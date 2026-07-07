@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --scallop: 16px;
+}
+
+/* Elemento de assinatura: borda serrilhada que lembra o canhoto de um
+   cartão de agendamento / recibo de salão. Usada nos cards de serviço
+   e no cartão de confirmação do agendamento. */
+.ticket {
+  position: relative;
+  -webkit-mask-image: radial-gradient(
+      circle at var(--scallop) 0,
+      transparent calc(var(--scallop) - 1px),
+      black calc(var(--scallop) - 0.5px)
+    ),
+    radial-gradient(
+      circle at var(--scallop) 100%,
+      transparent calc(var(--scallop) - 1px),
+      black calc(var(--scallop) - 0.5px)
+    );
+  -webkit-mask-size: calc(var(--scallop) * 2) 100%;
+  -webkit-mask-repeat: repeat-x;
+  -webkit-mask-position: left top, left bottom;
+  -webkit-mask-composite: source-over;
+  mask-image: radial-gradient(
+      circle at var(--scallop) 0,
+      transparent calc(var(--scallop) - 1px),
+      black calc(var(--scallop) - 0.5px)
+    ),
+    radial-gradient(
+      circle at var(--scallop) 100%,
+      transparent calc(var(--scallop) - 1px),
+      black calc(var(--scallop) - 0.5px)
+    );
+  mask-size: calc(var(--scallop) * 2) 100%;
+  mask-repeat: repeat-x;
+  mask-position: left top, left bottom;
+}
+
+.divider-stitch {
+  border-top: 1.5px dashed theme("colors.gold.DEFAULT");
+}

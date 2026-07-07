@@ -1,0 +1,32 @@
+// Configurado para PostgreSQL via Neon para produção
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Agendamento {
+  id        String   @id @default(cuid())
+  nome      String
+  telefone  String
+  servico   String
+  preco     Float
+  data      String   // formato "YYYY-MM-DD"
+  horario   String   // formato "HH:mm"
+  status    String   @default("PENDENTE")
+  criadoEm  DateTime @default(now())
+}
+
+model Servico {
+  id         String   @id @default(cuid())
+  nome       String   @unique
+  duracaoMin Int
+  preco      Float
+  descricao  String
+  criadoEm   DateTime @default(now())
+  atualizadoEm DateTime @updatedAt
+}
