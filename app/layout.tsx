@@ -1,35 +1,32 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Manrope } from "next/font/google";
-// @ts-ignore: Importing global CSS (no module declarations for .css files)
+import "@fontsource/fraunces/400.css";
+import "@fontsource/fraunces/400-italic.css";
+import "@fontsource/fraunces/500.css";
+import "@fontsource/fraunces/500-italic.css";
+import "@fontsource/fraunces/600.css";
+import "@fontsource/manrope/400.css";
+import "@fontsource/manrope/500.css";
+import "@fontsource/manrope/600.css";
+import "@fontsource/manrope/700.css";
+import "lenis/dist/lenis.css";
 import "./globals.css";
-
-const display = Cormorant_Garamond({
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
-  style: ["normal", "italic"],
-  variable: "--font-display",
-});
-
-const body = Manrope({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-body",
-});
+import SmoothScrollProvider from "@/components/SmoothScrollProvider";
 
 export const metadata: Metadata = {
-  title: "Ateliê Fio & Ouro — Agendamento",
-  description: "Agende seu horário no salão em poucos cliques.",
+  title: "Ellen Gardelin | Alisamentos & Tratamentos Capilares",
+  description:
+    "Especialista em alisamentos orgânicos, tratamentos capilares e cursos profissionais em Itápolis - SP.",
 };
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
     <html lang="pt-BR">
-      <body className={`${display.variable} ${body.variable} font-body bg-bg text-ink antialiased`}>
-        {children}
+      <body>
+        <SmoothScrollProvider>{children}</SmoothScrollProvider>
       </body>
     </html>
   );
