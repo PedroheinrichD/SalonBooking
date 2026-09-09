@@ -20,7 +20,7 @@ export default function About() {
             </div>
             <div>
               <dt>Localização</dt>
-              <dd>Itápolis — SP</dd>
+              <dd>R. Prof. Salvador Mangini - Parque das Laranjeiras, Itápolis - SP</dd>
             </div>
             <div>
               <dt>Especialidade</dt>

@@ -41,7 +41,7 @@ export default function Contact() {
           <dl className="contact-meta">
             <div className="contact-meta-item">
               <dt>Localização</dt>
-              <dd>Itápolis — SP</dd>
+              <dd>R. Prof. Salvador Mangini - Parque das Laranjeiras, Itápolis - SP</dd>
             </div>
             <div className="contact-meta-item">
               <dt>WhatsApp</dt>
