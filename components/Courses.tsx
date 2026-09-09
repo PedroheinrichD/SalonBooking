@@ -13,7 +13,7 @@ export default function Courses() {
           <Reveal variant="scale">
             <div className="courses-media">
               <FallbackImage
-                src="/images/curso-ellen.jpg"
+                src="/images/curso-ellen.png"
                 alt="Ellen Gardelin ministrando curso de alisamento"
                 label="Foto do curso em breve"
               />
