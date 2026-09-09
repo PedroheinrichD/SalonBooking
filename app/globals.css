@@ -502,11 +502,11 @@ h3,
      branco e fundo claro — sem isto o texto branco some. */
   background: linear-gradient(
       to top,
-      rgba(18, 12, 8, 0.82) 0%,
-      rgba(18, 12, 8, 0.62) 24%,
-      rgba(18, 12, 8, 0.32) 48%,
-      rgba(18, 12, 8, 0.12) 70%,
-      rgba(18, 12, 8, 0.32) 100%
+      rgba(18, 12, 8, 0.92) 0%,
+      rgba(18, 12, 8, 0.78) 22%,
+      rgba(18, 12, 8, 0.46) 45%,
+      rgba(18, 12, 8, 0.18) 70%,
+      rgba(18, 12, 8, 0.34) 100%
     ),
     linear-gradient(
       to bottom,
@@ -523,7 +523,15 @@ h3,
   flex-direction: column;
   justify-content: flex-end;
   padding: var(--gutter);
-  padding-bottom: clamp(2.5rem, 8vh, 5rem);
+  /* Extra room below the copy so the centered mobile scroll cue clears
+     the CTA buttons. */
+  padding-bottom: calc(var(--gutter) + 5.5rem);
+}
+
+@media (min-width: 700px) {
+  .hero-content {
+    padding-bottom: clamp(2.5rem, 8vh, 5rem);
+  }
 }
 
 .hero-copy {
@@ -532,7 +540,7 @@ h3,
   transform: translateY(18px);
   transition: opacity var(--dur-slow) var(--ease-editorial),
     transform var(--dur-slow) var(--ease-editorial);
-  text-shadow: 0 1px 24px rgba(18, 12, 8, 0.55);
+  text-shadow: 0 1px 3px rgba(18, 12, 8, 0.5), 0 2px 28px rgba(18, 12, 8, 0.6);
 }
 
 .hero-copy.is-visible {
@@ -594,20 +602,43 @@ h3,
 
 .hero-scroll-cue {
   position: absolute;
-  right: var(--gutter);
-  bottom: clamp(2.5rem, 8vh, 5rem);
+  left: 50%;
+  bottom: calc(var(--gutter) + env(safe-area-inset-bottom, 0px));
+  transform: translateX(-50%);
   z-index: 2;
-  display: none;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 0.7rem;
-  color: rgba(255, 253, 250, 0.75);
-  font-size: 0.75rem;
-  letter-spacing: 0.12em;
+  gap: 0.55rem;
+  color: rgba(255, 253, 250, 0.8);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  animation: hero-cue-bob 2.4s var(--ease-editorial) infinite;
 }
 
 @media (min-width: 700px) {
   .hero-scroll-cue {
-    display: flex;
+    left: auto;
+    right: var(--gutter);
+    bottom: clamp(2.5rem, 8vh, 5rem);
+    transform: none;
+    flex-direction: row;
+    gap: 0.7rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: none;
+    animation: none;
+  }
+}
+
+@keyframes hero-cue-bob {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(6px);
   }
 }
 

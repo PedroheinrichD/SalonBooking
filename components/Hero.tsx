@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useScrollVideo } from "@/hooks/useScrollVideo";
 
 const WHATSAPP_AGENDAR =
@@ -11,8 +11,15 @@ export default function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const { progress } = useScrollVideo(stageRef, videoRef);
 
-  // Copy fades in over the first slice of scroll, then stays put.
-  const copyVisible = progress > 0.015;
+  // Reveal shortly after mount so the hero is never a bare video (mobile
+  // lands at scroll 0, and ScrollTrigger can init late there). Scrolling
+  // past the first slice keeps it visible.
+  const [revealed, setRevealed] = useState(false);
+  useEffect(() => {
+    const t = setTimeout(() => setRevealed(true), 350);
+    return () => clearTimeout(t);
+  }, []);
+  const copyVisible = revealed || progress > 0.015;
 
   return (
     <section id="top" className="hero-stage" ref={stageRef}>
